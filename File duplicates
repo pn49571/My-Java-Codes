@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+/**
+ * Created by saiad on 4/1/2016.
+ */
+public class duplicates {
+    public static void main(String[] args) throws IOException{
+        String line =null;
+        boolean hasDuplicate = false;
+        Set<String> lines = new HashSet<String>();
+
+        File inputFile = new File("C:/Users/saiad/Desktop/Java/input.txt");
+        File tempFile = new File("C:/Users/saiad/Desktop/IE Project/Output/reviews_Electronics_2.txt");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+
+        while ( (line = reader.readLine()) != null && !hasDuplicate )
+        {
+            if (lines.contains(line)) {
+                hasDuplicate = true;
+            }
+            lines.add(line);
+        }
+
+        if (hasDuplicate){
+            System.out.print("NOT UNIQUE");
+        } else {
+            System.out.print("UNIQUE");
+        }
+        reader.close();
+        writer.close();
+    }
+
+}
