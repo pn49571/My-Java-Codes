@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+
+/**
+ * Created by saiad on 3/31/2016.
+ */
+public class mergefiles {
+    public static void main(String[] args) throws IOException {
+        File inputFile = new File("C:/Users/saiad/Desktop/input.txt");
+        File tempFile = new File("C:/Users/saiad/Desktop/IE Project/Output/reviews_Electronics_2.txt");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer1 = new BufferedWriter(new FileWriter(tempFile));
+
+String lineToRemove = "bbb";
+String currentLine;
+
+while((currentLine = reader.readLine()) != null) {
+    // trim newline when comparing with lineToRemove
+    String trimmedLine = currentLine.trim();
+    if(trimmedLine.equals(lineToRemove)) continue;
+    writer.write(currentLine + System.getProperty("line.separator"));
+}
+writer.close(); 
+reader.close(); 
