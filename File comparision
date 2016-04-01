@@ -1,0 +1,38 @@
+import java.io.*;
+/**
+ * Created by saiad on 3/31/2016.
+ */
+public class filecompare {
+    public static void main(String[] args) throws IOException {
+        File inputFile = new File("C:/Users/saiad/Desktop/input.txt");
+        File tempFile = new File("C:/Users/saiad/Desktop/IE Project/Output/reviews_Electronics_2.txt");
+        File tempFile1 = new File("C:/Users/saiad/Desktop/IE Project/Output/reviews_Electronics_3.txt");
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+        BufferedWriter writer1 = new BufferedWriter(new FileWriter(tempFile1));
+
+        String lineToRemove = "bbb";
+        String currentLine;
+
+        while((currentLine = reader.readLine()) != null) {
+            // trim newline when comparing with lineToRemove
+            String trimmedLine = currentLine.trim();
+            if(trimmedLine.equals(lineToRemove)) {
+                System.out.println(trimmedLine);
+                System.out.println(currentLine);
+                writer1.write(trimmedLine + System.getProperty("line.separator"));
+            }else {
+                writer.write(currentLine + System.getProperty("line.separator"));
+            }
+        }
+        writer.close();
+        writer1.close();
+        reader.close();
+        boolean successful = tempFile.renameTo(inputFile);
+
+
+    }
+
+
+}
